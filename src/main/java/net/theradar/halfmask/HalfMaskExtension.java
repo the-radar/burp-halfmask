@@ -17,7 +17,6 @@ public final class HalfMaskExtension implements BurpExtension {
         api.userInterface().registerHttpResponseEditorProvider(ctx -> new MaskedEditor(api, store, false));
         api.userInterface().registerContextMenuItemsProvider(new MaskMenu(api, store));
         // The only background work is the optional one-shot batch export, which ends by itself.
-        BatchExport.startIfRequested(api, store);
         api.extension().registerUnloadingHandler(store::clearListeners);
         api.logging().logToOutput("HalfMask loaded: " + store.rules().size() + " rules. Open the Masked tab on any message, or right-click to export a masked PNG.");
     }
